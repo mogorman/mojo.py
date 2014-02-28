@@ -175,10 +175,11 @@ def install_mojo(ser, bitstream, verbose, no_verify, ram):
 def reboot_mojo(ser, verbose):
     ser.setDTR(True)
     time.sleep(0.005)
-    ser.setDTR(False)
-    time.sleep(0.005)
-    ser.setDTR(True)
-    time.sleep(0.005)
+    for i in range(0,5):
+        ser.setDTR(False)
+        time.sleep(0.005)
+        ser.setDTR(True)
+        time.sleep(0.005)
     if verbose:
         print 'Rebooting Mojo'
     return
