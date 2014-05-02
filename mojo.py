@@ -153,13 +153,13 @@ def install_mojo(ser, bitstream, verbose, no_verify, ram):
         flash_length = struct.unpack("I", ret)[0] - 5
         if  flash_length == length and verbose:
             print 'Flash and local bitstream match file size.'
-        elif flash_length == length:
+        elif flash_length != length:
             print 'Flash is not same size as local bitstream.'
             sys.exit(1)
         ret = ser.read(length)
-        if  ret == bits  and verbose:
+        if  ret == bits and verbose:
             print 'Flash and local bitstream are a match.'
-        elif ret == bits:
+        elif ret != bits:
             print 'Flash and local bitstream do not match.'
             sys.exit(1)
     if not ram:
